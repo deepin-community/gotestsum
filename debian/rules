@@ -1,4 +1,32 @@
 #!/usr/bin/make -f
 
+export DH_GOLANG_EXCLUDES := contrib/notify cmd/internal/signalhandlerdriver
+
 %:
-	dh $@
+	dh $@ --builddirectory=_build --buildsystem=golang --with=golang
+
+override_dh_auto_configure:
+	# We're building `gotest.tools/gotestum`, and we depend on `gotest.tools`.
+	# That's a bit problematic, and here's why:
+	# - dh_auto_configure first creates symlinks to build dependencies, hence:
+	#     _build/src/gotest.tools -> /usr/share/gocode/src/gotest.tools
+	# - then dh_auto_configure creates the directory for the sources we build:
+	#     _build/src/gotest.tools/gotestsum
+	# - hence overriding the initial symlink to gotest.tools...
+	# So instead of one symlink to gotest.tools, we need symlinks to every
+	# packages that gotest.tools provide.
+	mkdir -pv _build/src/gotest.tools
+	for file in /usr/share/gocode/src/gotest.tools/*; do \
+	    ln -sv $$file _build/src/gotest.tools/; \
+	done
+	dh_auto_configure
+
+override_dh_auto_test:
+	# maybe due to GOPATH mode or Go modules mode.
+	find _build/src/gotest.tools/gotestsum/testjson/testdata -type f -exec \
+		sed -i -e 's| testjson/internal| internal|g' \
+			-e 's| testjson | . |g' -e 's|\[testjson/internal|[internal|g' {} +
+	dh_auto_test -- -short
+
+override_dh_auto_install:
+	dh_auto_install -- --no-source

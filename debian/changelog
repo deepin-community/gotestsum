@@ -1,5 +1,79 @@
-template-repository (1.0-1) unstable; urgency=medium
+gotestsum (1.8.2-1) unstable; urgency=medium
 
-  * Initial release
+  * Team upload
+  * New upstream version 1.8.2
+  * Add patch to use spf13/pflag.
+    The forked pflag is not packaged.
+  * Use short mode in testing to skip flaky e2e tests,
+    which are often broken when change default go version.
+  * Update Arnaud Rebillout email address
+  * Update Standards-Version to 4.6.2 (no changes)
+  * Update Build-Depends for new version (Closes: #1028846)
+  * Update section to golang
+  * Fix testjson tests in GOPATH mode
+  * Exclude internal signalhandlerdriver binary
 
- -- Tsic404 <liuheng@deepin.org>  Sat, 28 Jan 2023 13:46:49 +0800
+ -- Shengjing Zhu <zhsj@debian.org>  Sat, 14 Jan 2023 23:22:49 +0800
+
+gotestsum (0.5.0-2) unstable; urgency=medium
+
+  * Add missing build dependencies
+
+ -- Arnaud Rebillout <arnaud.rebillout@collabora.com>  Sun, 21 Jun 2020 16:19:35 +0700
+
+gotestsum (0.5.0-1) unstable; urgency=medium
+
+  [ Arnaud Rebillout ]
+  * New upstream version 0.5.0
+  * Update build dependencies
+  * Update the copyright file
+  * Add patches to fix tests
+  * Nitpicks in the rules file
+  * Exclude the notify command
+
+  [ Shengjing Zhu ]
+  * buildmode=pie not supported on riscv64
+
+ -- Arnaud Rebillout <arnaud.rebillout@collabora.com>  Sun, 21 Jun 2020 15:38:43 +0700
+
+gotestsum (0.4.0-3) unstable; urgency=medium
+
+  * Team upload.
+  * Bump debhelper-compat to 13
+  * Bump Standards-Version to 4.5.0 (no changes)
+  * Also symlink go.mod file in gotest.tools.
+    This eases the gotest.tools v3 transition.
+
+ -- Shengjing Zhu <zhsj@debian.org>  Fri, 19 Jun 2020 01:15:38 +0800
+
+gotestsum (0.4.0-2) unstable; urgency=medium
+
+  * Disable buildmode=pie for MIPS architectures
+  * Add gitlab-ci.yml
+
+ -- Arnaud Rebillout <arnaud.rebillout@collabora.com>  Tue, 31 Dec 2019 09:08:29 +0700
+
+gotestsum (0.4.0-1) unstable; urgency=medium
+
+  [ Dmitry Smirnov ]
+  * New upstream version 0.4.0
+
+  [ Arnaud Rebillout ]
+  * Build-Depends += "golang-golang-x-sync-dev"
+  * Update copyright after clarification by upstream
+  * Install NOTICE and README in documentation
+
+ -- Arnaud Rebillout <arnaud.rebillout@collabora.com>  Mon, 30 Dec 2019 12:50:10 +0700
+
+gotestsum (0.3.5-2) unstable; urgency=medium
+
+  * Team upload
+  * Standards-Version: 4.4.1
+
+ -- Dmitry Smirnov <onlyjob@debian.org>  Thu, 26 Dec 2019 20:29:51 +1100
+
+gotestsum (0.3.5-1) unstable; urgency=medium
+
+  * Initial release (Closes: #940225)
+
+ -- Arnaud Rebillout <arnaud.rebillout@collabora.com>  Wed, 23 Oct 2019 19:44:49 +1100
