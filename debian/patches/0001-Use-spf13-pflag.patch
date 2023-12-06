@@ -1,0 +1,51 @@
+From: Shengjing Zhu <zhsj@debian.org>
+Date: Sat, 14 Jan 2023 23:08:20 +0800
+Subject: Use spf13/pflag
+
+github.com/dnephin/pflag is fork of github.com/spf13/pflag, but
+the dnephin/pflag is not packaged.
+---
+ cmd/flags.go                | 2 +-
+ cmd/main.go                 | 2 +-
+ cmd/tool/slowest/slowest.go | 2 +-
+ 3 files changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/cmd/flags.go b/cmd/flags.go
+index a5d811b..d584279 100644
+--- a/cmd/flags.go
++++ b/cmd/flags.go
+@@ -6,7 +6,7 @@ import (
+ 	"path"
+ 	"strings"
+ 
+-	"github.com/dnephin/pflag"
++	"github.com/spf13/pflag"
+ 	"github.com/google/shlex"
+ 	"gotest.tools/gotestsum/internal/junitxml"
+ 	"gotest.tools/gotestsum/testjson"
+diff --git a/cmd/main.go b/cmd/main.go
+index 553cad5..2f45028 100644
+--- a/cmd/main.go
++++ b/cmd/main.go
+@@ -12,7 +12,7 @@ import (
+ 	"sync/atomic"
+ 	"syscall"
+ 
+-	"github.com/dnephin/pflag"
++	"github.com/spf13/pflag"
+ 	"github.com/fatih/color"
+ 	"gotest.tools/gotestsum/internal/log"
+ 	"gotest.tools/gotestsum/testjson"
+diff --git a/cmd/tool/slowest/slowest.go b/cmd/tool/slowest/slowest.go
+index a2c1327..6c53a4c 100644
+--- a/cmd/tool/slowest/slowest.go
++++ b/cmd/tool/slowest/slowest.go
+@@ -7,7 +7,7 @@ import (
+ 	"os"
+ 	"time"
+ 
+-	"github.com/dnephin/pflag"
++	"github.com/spf13/pflag"
+ 	"gotest.tools/gotestsum/internal/aggregate"
+ 	"gotest.tools/gotestsum/internal/log"
+ 	"gotest.tools/gotestsum/testjson"
